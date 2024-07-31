@@ -36,12 +36,12 @@ class SaveQuotesPipeline(object):
         quote.quote_content = item["quote_content"]
 
         # check whether the author exists
-        exist_author = session.query(Author).filter_by(
-            name=author.name).first()
-        if exist_author is not None:  # the current author exists
-            quote.author = exist_author
-        else:
-            quote.author = author
+        # exist_author = session.query(Author).filter_by(
+        # name=author.name).first()
+        # if exist_author is not None:  # the current author exists
+        # quote.author = exist_author
+        # else:
+        quote.author = author
 
         # check whether the current quote has tags or not
         if "tags" in item:

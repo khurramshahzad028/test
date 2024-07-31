@@ -11,7 +11,7 @@ def remove_quotes(text):
 
 
 def convert_date(text):
-    return datetime.strptime(text, '%B %d, %Y')
+    return str(datetime.strptime(text, '%B %d, %Y'))
 
 
 def parse_location(text):
@@ -21,7 +21,7 @@ def parse_location(text):
 class QuoteItem(Item):
     quote_content = Field(
         input_processor=MapCompose(remove_quotes),
-        # output_processor=TakeFirst()
+        output_processor=TakeFirst()
     )
 
     author_name = Field(
@@ -30,7 +30,7 @@ class QuoteItem(Item):
     )
 
     author_birthday = Field(
-        input_processor=MapCompose(convert_date),
+        input_processor=MapCompose(str.strip),
         output_processor=TakeFirst()
     )
 
